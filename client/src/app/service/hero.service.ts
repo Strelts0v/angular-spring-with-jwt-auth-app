@@ -16,14 +16,13 @@ export class HeroService {
         private authenticationService: AuthenticationService
     ) {}
 
-getHeroes(): Promise<Hero[]> {
+    getHeroes(): Promise<Hero[]> {
         const url = this.heroesUrl + '/heroes';
         return this.http.get(url, {headers: this.getHeaders()})
             .toPromise()
             .then(response => response.json() as Hero[])
             .catch(this.handleError);
     }
-
 
     getHero(id: number): Promise<Hero> {
         const url = this.heroesUrl + '/hero?id=' + id;
